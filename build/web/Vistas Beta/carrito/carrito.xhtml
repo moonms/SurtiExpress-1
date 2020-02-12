@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h:dataTable id="tablaCarrito" value="#{pedidoControlador.carrito}" var="producto">
+                    <h:column>
+                        <h:outputText value="#{producto.idProducto}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{producto.nombre}" />
+                    </h:column>
+                    <h:column>
+                        <h:commandButton action="#{pedidoControlador.removerCarrito(producto)}" value="remover" />
+                    </h:column>
+                    <h:column>
+                        
+                    </h:column>
+                </h:dataTable>
+
+
+          
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="FechaCreacion:" for="fechaCreacion" />
+                        <h:inputText id="fechaCreacion" value="#{pedidoControlador.pedido.fechaCreacion}" title="FechaCreacion" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="FechaEntrega:" for="fechaEntrega" />
+                        <h:inputText id="fechaEntrega" value="#{pedidoControlador.pedido.fechaEntrega}" title="FechaEntrega" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="IdUsuario:" for="idUsuario" />
+                        <h:selectOneMenu id="idUsuario" value="#{pedidoControlador.usuario.idUsuario}" title="IdUsuario" >
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{usuarioControlador.listarClientes()}" var="cli" itemLabel="#{cli.nombre}" itemValue="#{cli.idUsuario}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdEstadoPedido:" for="idEstadoPedido" />
+                        <h:selectOneMenu id="idEstadoPedido" value="#{pedidoControlador.estadoPedido.idEstadoPedido}" title="IdEstadoPedido" >
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{estadoPedidoControlador.listarEstadoPedido()}" var="estp" itemLabel="#{estp.estadoPedido}" itemValue="#{estp.idEstadoPedido}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton action="#{pedidoControlador.crearPedido()}" value="crear" />
+                    <a href="../carrito/catalogo.xhtml" type="button" >seguir comprando</a>
+                
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

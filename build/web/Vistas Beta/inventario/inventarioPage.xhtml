@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+
+                    <h:outputLabel value="Marca:" for="marca" />
+                    <h:inputText id="marca" value="#{marcaContolador.marca.marca}" title="Marca" />
+                </h:panelGrid>
+                <h:commandButton action="#{marcaContolador.crearMarca()}" value="Crear"/>
+            </h:form>
+  
+
+
+        <h:form>
+            <h1><h:outputText value="Create/Edit"/></h1>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="SubMarca:" for="subMarca" />
+                <h:inputText id="subMarca" value="#{subMarcaControlador.submarca.subMarca}" title="SubMarca" />
+                <h:outputLabel value="IdMarca:" for="idMarca" />
+                <h:selectOneMenu id="idMarca" value="#{subMarcaControlador.marca.idMarca}" title="IdMarca" >
+                    <!-- TODO: update below reference to list of available items-->
+                    <f:selectItems value="#{marcaContolador.listarMarcas()}" var="subm" itemLabel="#{subm.marca}" itemValue="#{subm.idMarca}"/>
+                </h:selectOneMenu>
+            </h:panelGrid>
+            <h:commandButton action="#{subMarcaControlador.crearSubMarca()}" value="Crear"/>
+        </h:form>
+
+   
+
+
+            <h:form enctype="multipart/form-data">
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="marca" for="maca" />
+                    <h:selectOneMenu id="marca" value="#{subMarcaControlador.marca.idMarca}" title="IdSubmarca" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{marcaContolador.listarMarcas()}" var="mar" itemLabel="#{mar.marca}" itemValue="#{mar.idMarca}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="IdSubmarca:" for="idSubmarca" />
+                    <h:selectOneMenu id="idSubmarca" value="#{productoControlador.submarca.idSubMarca}" title="IdSubmarca" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{subMarcaControlador.listarSubMarca()}" var="subm" itemLabel="#{subm.subMarca}" itemValue="#{subm.idSubMarca}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="Imagen:" for="imagen" />
+                    <h:inputFile id="imagen" class="file-path validate" value="#{productoControlador.file}" title="Imagen" />
+                    <h:outputLabel value="Nombre:" for="nombre" />
+                    <h:inputTextarea rows="4" cols="30" id="nombre" value="#{productoControlador.producto.nombre}" title="Nombre" />
+                    <h:outputLabel value="Descripcion:" for="descripcion" />
+                    <h:inputTextarea rows="4" cols="30" id="descripcion" value="#{productoControlador.producto.descripcion}" title="Descripcion" />
+                    <h:outputLabel value="Cantidad:" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{productoControlador.producto.cantidad}" title="Cantidad" />
+                    <h:outputLabel value="PrecioBruto:" for="precioBruto" />
+                    <h:inputText id="precioBruto" value="#{productoControlador.producto.precioBruto}" title="PrecioBruto" />
+                    <h:outputLabel value="Iva:" for="iva" />
+                    <h:inputText id="iva" value="#{productoControlador.producto.iva}" title="Iva" />
+                    <h:outputLabel value="PrecioNeto:" for="precioNeto" />
+                    <h:inputText id="precioNeto" value="#{productoControlador.producto.precioNeto}" title="PrecioNeto" />
+                    <h:outputLabel value="IdEstadoProducto:" for="idEstadoProducto" />
+                    <h:selectOneMenu id="idEstadoProducto0" value="#{productoControlador.estadoproducto.idEstadoProducto}" title="IdEstadoProducto" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{estadoProductoControlador.listarEstadoProducto()}" var="estp" itemLabel="#{estp.estadoProducto}" itemValue="#{estp.idEstadoProducto}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton action="#{productoControlador.crearProducto()}" value="Crear"/>
+            </h:form>
+        
+    
+
+
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                <h:dataTable value="#{productoControlador.listarInventario()}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdProducto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idProducto}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Imagen"/>
+                        </f:facet>
+                        <h:outputText value="#{item.imagen}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripcion"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Cantidad"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cantidad}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="PrecioBruto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.precioBruto}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Iva"/>
+                        </f:facet>
+                        <h:outputText value="#{item.iva}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="PrecioNeto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.precioNeto}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdEstadoProducto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idEstadoProducto.estadoProducto}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdSubmarca"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idSubmarca.subMarca}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="marca"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idSubmarca.idMarca.marca}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton action="#{productoControlador.preEditar(item)}" value="Editar"/>
+                        <h:commandButton action="#{productoControlador.eliminarProducto(item)}" value="eliminar" />
+
+
+                    </h:column>
+                    <h:column>
+                        <h:selectOneMenu id="idEstadoProducto2" value="#{productoControlador.estadoproducto.idEstadoProducto}" >
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{estadoProductoControlador.listarEstadoProducto()}" var="estp" itemLabel="#{estp.estadoProducto}" itemValue="1"/>
+                        </h:selectOneMenu>
+                        <h:commandButton action="#{productoControlador.editarEstado(item)}" value="bloquear" />
+                        
+                        
+                    </h:column>
+                    <h:column>
+                        
+                    </h:column>
+
+
+
+
+                </h:dataTable>
+                <h:commandButton action="#{productoControlador.avisarAdmin()}" value="avisar" />
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
