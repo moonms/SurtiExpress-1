@@ -1,0 +1,440 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1 style="color: red">
+            Usuario Transportador
+        </h1>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Nombre:" for="nombre" />
+                    <h:inputText id="nombre" value="#{usuarioControlador.usuario.nombre}" title="Nombre" />
+                    <h:outputLabel value="Apellido:" for="apellido" />
+                    <h:inputText id="apellido" value="#{usuarioControlador.usuario.apellido}" title="Apellido" />
+                    <h:outputLabel value="Documento:" for="documento" />
+                    <h:inputText id="documento" value="#{usuarioControlador.usuario.documento}" title="Documento" />
+                    <h:outputLabel value="Telefono:" for="telefono" />
+                    <h:inputText id="telefono" value="#{usuarioControlador.usuario.telefono}" title="Telefono" />
+                    <h:outputLabel value="Correo:" for="correo" />
+                    <h:inputText id="correo" value="#{usuarioControlador.usuario.correo}" title="Correo" />
+                    <h:outputLabel value="Contrasena:" for="contrasena" />
+                    <h:inputText id="contrasena" value="#{usuarioControlador.usuario.contrasena}" title="Contrasena" />
+                    <h:outputLabel value="color" for="idVehiculo" />
+                    <h:inputText value="#{usuarioControlador.vehiculo.color}" id="color" />
+                    <h:outputLabel value="marca" for="idVehiculo" />
+                    <h:inputText value="#{usuarioControlador.vehiculo.marca}" id="marca" />
+                    <h:outputLabel value="placa" for="idVehiculo" />
+                    <h:inputText value="#{usuarioControlador.vehiculo.placa}" id="placa" />
+                    <h:outputLabel value="IdRol:" for="idRol" />
+                    <h:selectOneMenu id="idRol" value="#{usuarioControlador.rol.idRol}" title="IdRol" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{rolControlador.listarRoles()}" var="rol" itemLabel="#{rol.rol}" itemValue="#{rol.idRol}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="IdTipoDocumento:" for="idTipoDocumento" />
+                    <h:selectOneMenu id="idTipoDocumento" value="#{usuarioControlador.tipodocumento.idTipoDocumento}" title="IdTipoDocumento" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{tipodocumentoControlador.listarDocumento()}" var="tip" itemLabel="#{tip.tipoDocumento}" itemValue="#{tip.idTipoDocumento}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton action="#{usuarioControlador.registrarUsuarioTransportador()}" value="crear" />
+            </h:form>
+        </f:view>
+
+
+        <h:form>
+            <h1><h:outputText value="List trans"/></h1>
+            <h:dataTable value="#{usuarioControlador.listarTransportadores()}" var="item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdUsuario"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idUsuario}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombre}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Apellido"/>
+                    </f:facet>
+                    <h:outputText value="#{item.apellido}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Documento"/>
+                    </f:facet>
+                    <h:outputText value="#{item.documento}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Telefono"/>
+                    </f:facet>
+                    <h:outputText value="#{item.telefono}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Correo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.correo}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Contrasena"/>
+                    </f:facet>
+                    <h:outputText value="#{item.contrasena}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdRol"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idRol.rol}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdVehiculo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idVehiculo.placa}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdTipoDocumento"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoDocumento.tipoDocumento}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton  action="#{usuarioControlador.preEditarUsuario(item)}" value="Editar" />
+                    <h:commandButton action="#{usuarioControlador.eliminarUsuarios(item)}" value="Eliminar"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+
+        <h:form>
+            <h1><h:outputText value="List aux"/></h1>
+            <h:dataTable value="#{usuarioControlador.listarEmpleadosAuxiliar()}" var="item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdUsuario"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idUsuario}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombre}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Apellido"/>
+                    </f:facet>
+                    <h:outputText value="#{item.apellido}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Documento"/>
+                    </f:facet>
+                    <h:outputText value="#{item.documento}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Telefono"/>
+                    </f:facet>
+                    <h:outputText value="#{item.telefono}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Correo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.correo}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Contrasena"/>
+                    </f:facet>
+                    <h:outputText value="#{item.contrasena}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdRol"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idRol.rol}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdTipoDocumento"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoDocumento.tipoDocumento}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton  action="#{usuarioControlador.preEditarUsuario(item)}" value="Editar" />
+                    <h:commandButton action="#{usuarioControlador.eliminarUsuarios(item)}" value="Eliminar"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+        <h1 style="color: green">
+            UsuarioCliente
+        </h1>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Nombre:" for="nombre" />
+                    <h:inputText id="nombre1" value="#{usuarioControlador.usuario.nombre}" title="Nombre" />
+                    <h:outputLabel value="Apellido:" for="apellido" />
+                    <h:inputText id="apellido1" value="#{usuarioControlador.usuario.apellido}" title="Apellido" />
+                    <h:outputLabel value="Documento:" for="documento" />
+                    <h:inputText id="documento1" value="#{usuarioControlador.usuario.documento}" title="Documento" />
+                    <h:outputLabel value="Telefono:" for="telefono" />
+                    <h:inputText id="telefono1" value="#{usuarioControlador.usuario.telefono}" title="Telefono" />
+                    <h:outputLabel value="Correo:" for="correo" />
+                    <h:inputText id="correo1" value="#{usuarioControlador.usuario.correo}" title="Correo" />
+                    <h:outputLabel value="Contrasena:" for="contrasena" />
+                    <h:inputText id="contrasena1" value="#{usuarioControlador.usuario.contrasena}" title="Contrasena" />
+                    <h:outputLabel value="RazonSocial:" for="razonSocial" />
+                    <h:inputText id="razonSocial1" value="#{usuarioControlador.usuario.razonSocial}" title="RazonSocial" />
+                    <h:outputLabel value="Direccion:" for="direccion" />
+                    <h:inputText id="direccion1" value="#{usuarioControlador.usuario.direccion}" title="Direccion" />
+                    <h:outputLabel value="Barrio:" for="barrio" />
+                    <h:inputText id="barrio1" value="#{usuarioControlador.usuario.barrio}" title="Barrio" />
+                    <h:outputLabel value="Rut:" for="rut" />
+                    <h:inputText id="rut1" value="#{usuarioControlador.usuario.rut}" title="Rut" />
+                    <h:outputLabel value="IdRol:" for="idRol" />
+                    <h:selectOneMenu id="idRol1" value="#{usuarioControlador.rol.idRol}" title="IdRol" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{rolControlador.listarRoles()}" var="rol" itemLabel="#{rol.rol}" itemValue="#{rol.idRol}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="IdZona:" for="idZona" />
+                    <h:selectOneMenu id="idZona1" value="#{usuarioControlador.zona.idZona}" title="IdZona" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{zonaControlador.listarZonas()}" var="zon" itemLabel="#{zon.zona}" itemValue="#{zon.idZona}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="IdTipoDocumento:" for="idTipoDocumento" />
+                    <h:selectOneMenu id="idTipoDocumento1" value="#{usuarioControlador.tipodocumento.idTipoDocumento}" title="IdTipoDocumento" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{tipodocumentoControlador.listarDocumento()}" var="tip" itemLabel="#{tip.tipoDocumento}" itemValue="#{tip.idTipoDocumento}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton action="#{usuarioControlador.registrarUsuarioCliente()}" value="crear" />
+            </h:form>
+        </f:view>
+
+
+        <h:form>
+            <h1><h:outputText value="List clie"/></h1>
+            <h:dataTable value="#{usuarioControlador.listarClientes()}" var="item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdUsuario"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idUsuario}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombre}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Apellido"/>
+                    </f:facet>
+                    <h:outputText value="#{item.apellido}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Documento"/>
+                    </f:facet>
+                    <h:outputText value="#{item.documento}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Telefono"/>
+                    </f:facet>
+                    <h:outputText value="#{item.telefono}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Correo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.correo}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Contrasena"/>
+                    </f:facet>
+                    <h:outputText value="#{item.contrasena}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="RazonSocial"/>
+                    </f:facet>
+                    <h:outputText value="#{item.razonSocial}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Direccion"/>
+                    </f:facet>
+                    <h:outputText value="#{item.direccion}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Barrio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.barrio}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Rut"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rut}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdRol"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idRol.rol}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdZona"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idZona.zona}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdTipoDocumento"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoDocumento.tipoDocumento}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton  action="#{usuarioControlador.preEditarUsuario(item)}" value="Editar" />
+                    <h:commandButton action="#{usuarioControlador.eliminarUsuarios(item)}" value="Eliminar"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+        <h1 style="color: blueviolet">
+            Usuario Empleado
+        </h1>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Nombre:" for="nombre" />
+                    <h:inputText id="nombre2" value="#{usuarioControlador.usuario.nombre}" title="Nombre" />
+                    <h:outputLabel value="Apellido:" for="apellido" />
+                    <h:inputText id="apellido2" value="#{usuarioControlador.usuario.apellido}" title="Apellido" />
+                    <h:outputLabel value="Documento:" for="documento" />
+                    <h:inputText id="documento2" value="#{usuarioControlador.usuario.documento}" title="Documento" />
+                    <h:outputLabel value="Telefono:" for="telefono" />
+                    <h:inputText id="telefono2" value="#{usuarioControlador.usuario.telefono}" title="Telefono" />
+                    <h:outputLabel value="Correo:" for="correo" />
+                    <h:inputText id="correo2" value="#{usuarioControlador.usuario.correo}" title="Correo" />
+                    <h:outputLabel value="Contrasena:" for="contrasena" />
+                    <h:inputText id="contrasena2" value="#{usuarioControlador.usuario.contrasena}" title="Contrasena" />
+                    <h:outputLabel value="IdRol:" for="idRol" />
+                    <h:selectOneMenu id="idRol2" value="#{usuarioControlador.rol.idRol}" title="IdRol" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{rolControlador.listarRoles()}" var="rol" itemLabel="#{rol.rol}" itemValue="#{rol.idRol}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="IdTipoDocumento:" for="idTipoDocumento" />
+                    <h:selectOneMenu id="idTipoDocumento2" value="#{usuarioControlador.tipodocumento.idTipoDocumento}" title="IdTipoDocumento" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{tipodocumentoControlador.listarDocumento()}" var="tip" itemLabel="#{tip.tipoDocumento}" itemValue="#{tip.idTipoDocumento}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton action="#{usuarioControlador.registrarUsuarioEmpleado()}" value="crear" />
+            </h:form>
+        </f:view>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="List bode"/></h1>
+                <h:dataTable value="#{usuarioControlador.listarEmpleadosBodeguista()}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdUsuario"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuario}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Apellido"/>
+                        </f:facet>
+                        <h:outputText value="#{item.apellido}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Documento"/>
+                        </f:facet>
+                        <h:outputText value="#{item.documento}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Telefono"/>
+                        </f:facet>
+                        <h:outputText value="#{item.telefono}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Correo"/>
+                        </f:facet>
+                        <h:outputText value="#{item.correo}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Contrasena"/>
+                        </f:facet>
+                        <h:outputText value="#{item.contrasena}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdRol"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idRol.rol}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdTipoDocumento"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTipoDocumento.tipoDocumento}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton  action="#{usuarioControlador.preEditarUsuario(item)}" value="Editar" />
+                        <h:commandButton action="#{usuarioControlador.eliminarUsuarios(item)}" value="Eliminar"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
