@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                                  http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd" 
+              version="2.2">  
+    <application>
+        <locale-config>
+            <default-locale>es</default-locale>
+            <supported-locale>es</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+        <!--etiquetas del formulario-->
+        <resource-bundle>
+            <base-name>beans.languages.InicioForm</base-name> <!--Inicio-->
+            <var>msjInicio</var>
+        </resource-bundle>
+        
+         <resource-bundle>
+            <base-name>beans.languages.IndexForm</base-name><!--Index-->
+            <var>msjIndex</var>
+        </resource-bundle>
+        
+         <resource-bundle>
+            <base-name>beans.languages.RegistroForm</base-name><!--Registro-->
+            <var>msjRegistro</var>
+        </resource-bundle>
+        
+            <resource-bundle>
+            <base-name>beans.languages.LoginForm</base-name><!--Login-->
+            <var>msjLogin</var>
+        </resource-bundle>
+        
+        <resource-bundle>
+            <base-name>beans.languages.AdminForm</base-name><!--Admin-->
+            <var>msjAdmin</var>
+        </resource-bundle>
+        
+          <resource-bundle>
+            <base-name>beans.languages.CrearTareaForm</base-name><!--Crear tarea-->
+            <var>msjcrearTarea</var>
+        </resource-bundle>
+        
+         <resource-bundle>
+            <base-name>beans.languages.TareasForm</base-name><!--tareas-->
+            <var>msjTareas</var>
+        </resource-bundle>
+        
+        <resource-bundle>
+            <base-name>beans.languages.UsuariosForm</base-name><!--Usuarios-->
+            <var>msjUsuarios</var>
+        </resource-bundle>
+        
+        
+         <resource-bundle>
+            <base-name>beans.languages.InventarioForm</base-name><!--Inventario-->
+            <var>msjInventario</var>
+        </resource-bundle>
+        
+        <resource-bundle>
+            <base-name>beans.languages.HomeForm</base-name><!--Home/Estadisticas-->
+            <var>msjHome</var>
+        </resource-bundle>
+        
+        
+        
+        
+        
+        <resource-bundle>
+            <base-name>beans.languages.pages</base-name>
+            <var>pagesEti</var>
+        </resource-bundle>
+        <!--cambio de textos de validadores-->
+        <message-bundle>beans.languages.jsf</message-bundle>
+    </application>
+</faces-config>
